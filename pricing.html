@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearwave — Simple, Transparent Pricing</title>
+  
+  <!-- CSS Framework & Icon Pack Dependencies -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <!-- Premium Google Fonts Matrix -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-dark-teal: #132f2b;
+      --brand-mint-teal: #0d8a72;
+      --brand-muted: #526b67;
+      --brand-canvas: #f0f6f4;
+      --border-light: #e3ece9;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--brand-dark-teal);
+      background-color: #f4faf8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.03em; }
+    
+    h1 em, h2 em, h3 em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brand-mint-teal);
+      text-transform: lowercase;
+    }
+
+    /* Badge & Labels Components */
+    .badge-pill-outline {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(13, 138, 114, 0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+
+    .save-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--brand-mint-teal);
+      background-color: #e2f2ee;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Custom Toggle Switch */
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--brand-muted);
+    }
+    .pricing-toggle .form-check-input {
+      width: 44px;
+      height: 24px;
+      background-color: #cbdad5;
+      border: none;
+      cursor: pointer;
+    }
+    .pricing-toggle .form-check-input:checked {
+      background-color: var(--brand-mint-teal);
+    }
+    .pricing-toggle .form-check-input:focus {
+      box-shadow: none;
+    }
+
+    /* Pricing Layout System */
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(227, 236, 233, 0.8);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 20px 40px rgba(19, 47, 43, 0.02);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      background: var(--brand-dark-teal);
+      color: #ffffff;
+      border: none;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(19, 47, 43, 0.12);
+    }
+
+    .featured-ribbon {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brand-mint-teal);
+      color: #ffffff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 5px 16px;
+      border-radius: 100px;
+      box-shadow: 0 4px 10px rgba(13, 138, 114, 0.2);
+    }
+
+    .plan-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand-muted);
+    }
+    .featured .plan-title {
+      color: #a3bda9;
+    }
+
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      margin: 1rem 0;
+    }
+    .price-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .price-unit {
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+    .featured .price-unit {
+      color: #a3bda9;
+    }
+
+    .plan-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--brand-muted);
+      margin-bottom: 2rem;
+      min-height: 36px;
+    }
+    .featured .plan-desc {
+      color: #cbdad5;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .feature-list li {
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .feature-list li i {
+      color: var(--brand-mint-teal);
+      font-size: 0.9rem;
+    }
+    .featured .feature-list li i {
+      color: var(--brand-mint-teal);
+    }
+
+    .btn-pricing {
+      border-radius: 100px;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      width: 100%;
+      margin-top: auto;
+      transition: all 0.2s;
+    }
+    .btn-pricing-outline {
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      color: var(--brand-dark-teal);
+    }
+    .btn-pricing-outline:hover {
+      border-color: var(--brand-muted);
+      background: #fafcfb;
+    }
+    .btn-pricing-accent {
+      background: var(--brand-mint-teal);
+      color: #ffffff;
+      border: none;
+    }
+    .btn-pricing-accent:hover {
+      background: #0b7863;
+      color: #ffffff;
+    }
+
+    /* Testimonials Area Components */
+    .testimonials-section {
+      background-color: #eaf3f0;
+      padding-top: 6rem;
+      padding-bottom: 7rem;
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(227, 236, 233, 0.5);
+      box-shadow: 0 15px 35px rgba(19, 47, 43, 0.015);
+      margin-bottom: 1.5rem;
+    }
+
+    .star-rating {
+      color: var(--brand-mint-teal);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.86rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--brand-dark-teal);
+      margin-bottom: 1.75rem;
+    }
+
+    .profile-node {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .profile-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--brand-mint-teal);
+      background-color: #e2f2ee;
+    }
+
+    .profile-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .profile-role {
+      font-size: 0.68rem;
+      color: var(--brand-muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pricing Showcase Matrix Assembly Section Context -->
+  <section class="container pt-5 pb-5" style="margin-top: 3rem; margin-bottom: 4rem;">
+    <div class="text-center mb-4">
+      <div class="badge-pill-outline mb-3">Pricing</div>
+      <h1 class="display-5 fw-bold" style="color: var(--brand-dark-teal);">
+        Simple, <em>transparent</em> pricing
+      </h1>
+      <p class="text-muted mx-auto mt-2" style="max-width: 480px; font-weight: 500; font-size: 0.92rem;">
+        No hidden fees. No surprise overages. Cancel anytime.
+      </p>
+    </div>
+
+    <!-- Monthly / Annual Configuration Switch Controller Component -->
+    <div class="d-flex justify-content-center mb-5">
+      <div class="pricing-toggle form-check form-switch p-0">
+        <span>Monthly</span>
+        <input class="form-check-input m-0" type="checkbox" role="switch" id="billingIntervalSwitch" checked>
+        <span class="text-dark">Annual</span>
+        <span class="save-badge ms-1">Save 20%</span>
+      </div>
+    </div>
+
+    <!-- Main Dynamic Pricing Form Grid Rows -->
+    <div class="row g-4 max-width-lg mx-auto align-items-stretch justify-content-center" style="max-width: 1040px;">
+      
+      <!-- Tier Element: Starter -->
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <div class="plan-title">Starter</div>
+          <div class="price-block">
+            <span class="price-num">$20</span>
+            <span class="price-unit">/ mo</span>
+          </div>
+          <p class="plan-desc">For individuals and small teams getting started with structured workflows.</p>
+          
+          <ul class="feature-list">
+            <li><i class="bi bi-check-circle-fill"></i> Up to 5 team members</li>
+            <li><i class="bi bi-check-circle-fill"></i> 10 active dashboards</li>
+            <li><i class="bi bi-check-circle-fill"></i> Basic automations (50/mo)</li>
+            <li><i class="bi bi-check-circle-fill"></i> 7-day data history</li>
+            <li><i class="bi bi-check-circle-fill"></i> Email support</li>
+          </ul>
+          
+          <button class="btn btn-pricing btn-pricing-outline">Start Free Trial</button>
+        </div>
+      </div>
+
+      <!-- Tier Element: Professional (Featured Center Element) -->
+      <div class="col-md-4">
+        <div class="pricing-card featured">
+          <div class="featured-ribbon">Most Popular</div>
+          <div class="plan-title">Professional</div>
+          <div class="price-block">
+            <span class="price-num">$60</span>
+            <span class="price-unit">/ mo</span>
+          </div>
+          <p class="plan-desc">For growing teams that need powerful automation and advanced reporting.</p>
+          
+          <ul class="feature-list">
+            <li><i class="bi bi-check-circle-fill"></i> Up to 25 team members</li>
+            <li><i class="bi bi-check-circle-fill"></i> Unlimited dashboards</li>
+            <li><i class="bi bi-check-circle-fill"></i> Advanced automations (unlimited)</li>
+            <li><i class="bi bi-check-circle-fill"></i> 90-day data history</li>
+            <li><i class="bi bi-check-circle-fill"></i> Priority chat support</li>
+            <li><i class="bi bi-check-circle-fill"></i> Mobile app access</li>
+          </ul>
+          
+          <button class="btn btn-pricing btn-pricing-accent">Start Free Trial</button>
+        </div>
+      </div>
+
+      <!-- Tier Element: Enterprise -->
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <div class="plan-title">Enterprise</div>
+          <div class="price-block">
+            <span class="price-num">$150</span>
+            <span class="price-unit">/ mo</span>
+          </div>
+          <p class="plan-desc">For large organizations with custom requirements and compliance needs.</p>
+          
+          <ul class="feature-list">
+            <li><i class="bi bi-check-circle-fill"></i> Unlimited members</li>
+            <li><i class="bi bi-check-circle-fill"></i> Custom integrations & API</li>
+            <li><i class="bi bi-check-circle-fill"></i> SSO & advanced permissions</li>
+            <li><i class="bi bi-check-circle-fill"></i> Unlimited data history</li>
+            <li><i class="bi bi-check-circle-fill"></i> Dedicated success manager</li>
+            <li><i class="bi bi-check-circle-fill"></i> SOC 2 & compliance reports</li>
+          </ul>
+          
+          <button class="btn btn-pricing btn-pricing-outline">Contact Sales</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Comprehensive Customer Testimonials Display Component -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-6 fw-bold" style="color: var(--brand-dark-teal);">
+          Teams that <em>love</em> Clearwave
+        </h2>
+        <p class="text-muted mx-auto mt-2" style="max-width: 480px; font-weight: 500; font-size: 0.88rem;">
+          Don't take our word for it — here's what real teams say after 90 days.
+        </p>
+      </div>
+
+      <!-- Asymmetrical Masonry Testimonial Column Configurations -->
+      <div class="row g-4 justify-content-center" style="max-width: 1040px; margin: 0 auto;">
+        
+        <!-- Column Pack 01 -->
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "We replaced three separate tools with Clearwave and actually have fewer meetings now. The automation flows handle the handoffs our team used to spend mornings sorting out. It's the calmest our workflow has ever felt."
+            </p>
+            <div class="profile-node">
+              <div class="profile-avatar" style="color: #0d8a72; background-color: #dfede9;">SL</div>
+              <div>
+                <h6 class="profile-name">Sarah Lindqvist</h6>
+                <p class="profile-role">Head of Operations — Stratum IO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column Pack 02 -->
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "The mobile app alone justified the switch. I can review dashboards and approve tasks between meetings without opening my laptop."
+            </p>
+            <div class="profile-node">
+              <div class="profile-avatar" style="color: #1a446c; background-color: #e2ecf5;">MR</div>
+              <div>
+                <h6 class="profile-name">Marcus Reyes</h6>
+                <p class="profile-role">Product Director — Meridian</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "ahead of what we had. We can finally show stakeholders live data instead of preparing decks."
+            </p>
+            <div class="profile-node">
+              <div class="profile-avatar" style="color: #634482; background-color: #f1edf5;">TW</div>
+              <div>
+                <h6 class="profile-name">Tom Wainwright</h6>
+                <p class="profile-role">CFO — Pulsar HQ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column Pack 03 -->
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "Onboarding our 30-person team took one afternoon. The learning curve is genuinely flat."
+            </p>
+            <div class="profile-node">
+              <div class="profile-avatar" style="color: #af6621; background-color: #f7efe6;">PK</div>
+              <div>
+                <h6 class="profile-name">Priya Kapoor</h6>
+                <p class="profile-role">Engineering Lead — Vanta Labs</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "message. Had a custom integration question answered in under two hours."
+            </p>
+            <div class="profile-node">
+              <div class="profile-avatar" style="color: #218380; background-color: #eaf3f3;">AN</div>
+              <div>
+                <h6 class="profile-name">Aiko Nakamura</h6>
+                <p class="profile-role">CTO — Nexaflow</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JS Framework Scripts Core -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
