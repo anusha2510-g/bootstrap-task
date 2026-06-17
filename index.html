@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearwave — Premium Landing Page</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cw-dark: #063a31;
+      --cw-mint: #107c67;
+      --cw-light-mint: #eef7f5;
+      --cw-muted: #5a7570;
+      --cw-border: #e3edea;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--cw-dark);
+      background: radial-gradient(circle at 75% 25%, #f6fbf9 0%, #e3f2ee 60%, #edf5f2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+      color: var(--cw-dark) !important;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--cw-muted) !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--cw-mint) !important;
+    }
+
+    .btn-cw-primary {
+      background-color: var(--cw-dark);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .btn-cw-primary:hover {
+      background-color: #0b4f43;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(6, 58, 49, 0.15);
+    }
+
+    .btn-cw-secondary {
+      background-color: rgba(255, 255, 255, 0.6);
+      color: var(--cw-mint);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      border: 1px solid rgba(16, 124, 103, 0.15);
+      transition: all 0.25s ease;
+    }
+
+    .btn-cw-secondary:hover {
+      background-color: #ffffff;
+      color: var(--cw-mint);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 124, 103, 0.08);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(16, 124, 103, 0.12);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cw-muted);
+    }
+
+    .hero-badge i {
+      color: var(--cw-mint);
+      font-size: 0.65rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--cw-mint);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--cw-muted);
+    }
+
+    .trust-indicator {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--cw-muted);
+      opacity: 0.8;
+    }
+
+    .mockup-container {
+      position: relative;
+      width: 100%;
+      max-width: 530px;
+    }
+
+    .window-card {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(227, 237, 234, 0.8);
+      box-shadow: 0 40px 80px rgba(6, 58, 49, 0.07);
+      padding: 36px 32px 44px 32px;
+      position: relative;
+    }
+
+    .window-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .team-perf-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cw-dark);
+      opacity: 0.9;
+    }
+
+    .internal-trend-badge {
+      background: var(--cw-dark);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 14px;
+      text-align: center;
+      min-width: 115px;
+    }
+
+    .internal-trend-badge .trend-val {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .internal-trend-badge .trend-label {
+      font-size: 0.65rem;
+      opacity: 0.75;
+      font-weight: 600;
+    }
+
+    .chart-container-5 {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 125px;
+      margin-bottom: 35px;
+      padding: 0 15px;
+    }
+
+    .chart-bar-v2 {
+      width: 54px;
+      border-radius: 6px;
+    }
+
+    .chart-bar-v2.light {
+      background-color: #e2edea;
+    }
+
+    .chart-bar-v2.dark {
+      background-color: var(--cw-dark);
+    }
+
+    .clean-metric {
+      text-align: center;
+    }
+
+    .clean-metric h4 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--cw-dark);
+      margin-bottom: 2px;
+    }
+
+    .clean-metric .metric-lbl {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cw-muted);
+    }
+
+    .absolute-integration-badge {
+      position: absolute;
+      bottom: -15px;
+      left: -15px;
+      background: #ffffff;
+      border: 1px solid var(--cw-border);
+      padding: 8px 14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(6, 58, 49, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .int-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--cw-dark);
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    .int-text .int-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--cw-dark);
+      line-height: 1.2;
+    }
+
+    .int-text .int-sub {
+      font-size: 0.68rem;
+      color: var(--cw-muted);
+    }
+
+    .logo-cloud-section {
+      background-color: #ffffff;
+      border-top: 1px solid var(--cw-border);
+      padding: 40px 0;
+    }
+
+    .logo-cloud-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cw-muted);
+      opacity: 0.75;
+    }
+
+    .logo-item {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cw-dark);
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-item i {
+      font-size: 1.2rem;
+      color: var(--cw-mint);
+    }
+
+    @media (max-width: 991.98px) {
+      .hero-title { font-size: 3rem; }
+      .mockup-container { margin: 40px auto 20px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg py-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">clearwave</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto gap-1 gap-lg-4 my-3 my-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">App</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-4">
+          <a href="#" class="nav-link p-0">Sign in</a>
+          <a href="#" class="btn btn-cw-primary">Start Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5 py-xl-4">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 text-center text-lg-start">
+        <div class="mb-3">
+          <div class="hero-badge">
+            <i class="bi bi-diamond-fill"></i> Rated #1 Productivity SaaS of 2024
+          </div>
+        </div>
+        <h1 class="hero-title mb-4">
+          Your workflow,<br><em>finally clear.</em>
+        </h1>
+        <p class="hero-desc mb-4 pe-lg-5">
+          Clearwave unifies your team's projects, data, and communication into one calm, focused surface. Less noise, more done.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mb-5">
+          <a href="#" class="btn btn-cw-primary px-4">Start Free — No Card &nbsp;→</a>
+          <a href="#" class="btn btn-cw-secondary px-4"><i class="bi bi-play-fill me-1"></i> See it in action</a>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-4">
+          <div class="trust-indicator"><i class="bi bi-shield-check me-1"></i> SOC 2 Certified</div>
+          <div class="trust-indicator"><i class="bi bi-lightning-charge me-1"></i> 99.9% Uptime SLA</div>
+          <div class="trust-indicator"><i class="bi bi-people me-1"></i> 50k+ Teams</div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
+        <div class="mockup-container">
+          
+          <div class="window-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <div>
+                <div class="d-flex gap-1.5 mb-2">
+                  <span class="window-dot me-1" style="background-color: #ff5f56;"></span>
+                  <span class="window-dot me-1" style="background-color: #ffbd2e;"></span>
+                  <span class="window-dot" style="background-color: #27c93f;"></span>
+                </div>
+                <div class="team-perf-title">Team Performance</div>
+              </div>
+              
+              <div class="internal-trend-badge">
+                <div class="trend-val"><i class="bi bi-arrow-up-short"></i> 34%</div>
+                <div class="trend-label">Output this week</div>
+              </div>
+            </div>
+            
+            <div class="chart-container-5">
+              <div class="chart-bar-v2 light" style="height: 35px;"></div>
+              <div class="chart-bar-v2 light" style="height: 55px;"></div>
+              <div class="chart-bar-v2 dark" style="height: 85px;"></div>
+              <div class="chart-bar-v2 dark" style="height: 115px;"></div>
+              <div class="chart-bar-v2 dark" style="height: 105px;"></div>
+            </div>
+
+            <div class="row g-0">
+              <div class="col-4">
+                <div class="clean-metric">
+                  <h4>94%</h4>
+                  <div class="metric-lbl">Task Rate</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="clean-metric">
+                  <h4>2.4k</h4>
+                  <div class="metric-lbl">Active Users</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="clean-metric">
+                  <h4>18h</h4>
+                  <div class="metric-lbl">Saved / wk</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-integration-badge">
+              <div class="int-icon">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+              <div class="int-text">
+                <div class="int-title">New integration</div>
+                <div class="int-sub">Slack connected</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="logo-cloud-section mt-5">
+    <div class="container text-center">
+      <div class="logo-cloud-title mb-4">Trusted by forward-thinking teams at</div>
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center align-items-center">
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-grid-1x2-fill"></i> Nexaflow</div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-circle-half"></i> Meridian</div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-triangle-fill"></i> Vanta Labs</div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-layers-fill"></i> Pulsar HQ</div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-person-square"></i> Arclight</div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div class="logo-item"><i class="bi bi-briefcase-fill"></i> Korova Co.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
