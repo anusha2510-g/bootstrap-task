@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearwave — Platform Features</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-dark-teal: #132f2b;
+      --brand-mint-teal: #0d8a72;
+      --brand-muted: #526b67;
+      --brand-canvas: #f0f6f4;
+      --border-light: #e3ece9;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--brand-dark-teal);
+      background: radial-gradient(circle at 50% 20%, #f4faf8 0%, #e5f0ec 40%, #eaf3f0 80%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.02em; }
+    
+    h1 em, h2 em, h3 em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brand-mint-teal);
+      text-transform: lowercase;
+    }
+
+    .badge-pill-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(13, 138, 114, 0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-mint-teal);
+    }
+
+    .premium-ui-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid rgba(227, 236, 233, 0.8);
+      box-shadow: 0 25px 50px rgba(19, 47, 43, 0.03);
+    }
+    
+    .metric-panel {
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: #fafcfb;
+    }
+
+    .indicator-line {
+      width: 100%; height: 2px; background: #e6ecea; border-radius: 2px; position: relative;
+    }
+    .indicator-line::after {
+      content: ''; position: absolute; left: 0; top: 0; height: 100%; background: var(--brand-dark-teal);
+    }
+    .indicator-line.fill-wide::after { width: 75%; }
+    .indicator-line.fill-mid::after { width: 45%; }
+    .indicator-line.fill-green::after { width: 60%; background: var(--brand-mint-teal); }
+
+    .status-pill { font-size: 0.68rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; min-width: 60px; text-align: center; }
+    .status-pill.done { color: #0d7343; background: #e1f7ec; }
+    .status-pill.active { color: #0d47a1; background: #e3f2fd; }
+    .status-pill.queued { color: #e65100; background: #fff3e0; }
+    .status-pill.paused { color: #526b67; background: #eee; }
+    .status-pill.resolved { color: #132f2b; background: #e3ece9; }
+    .status-pill.open { color: #d32f2f; background: #ffebee; }
+
+    .feature-feature-list div {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      font-weight: 500;
+    }
+
+    .avatar-stack span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      margin-right: -6px;
+      border: 1px solid #fff;
+    }
+
+    .stat-divider {
+      width: 24px;
+      height: 2px;
+      background-color: var(--brand-mint-teal);
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="container text-center pt-5" style="margin-top: 4rem; margin-bottom: 6rem;">
+    <div class="badge-pill-outline mb-3">Platform Features</div>
+    <h1 class="display-5 fw-bold" style="color: var(--brand-dark-teal);">
+      Built for <em>clarity</em><br>at every scale
+    </h1>
+    <p class="text-muted mx-auto mt-3" style="max-width: 500px; font-weight: 500; font-size: 0.95rem;">
+      Every feature is designed to reduce friction and surface what matters. No bloat, no configuration maze.
+    </p>
+  </header>
+
+  <main class="container mb-5 pb-5">
+    <div class="d-flex flex-column gap-5">
+      
+      <div class="row align-items-center gy-4 py-4 justify-content-between">
+        <div class="col-lg-5 order-lg-1">
+          <div class="section-label mb-2">01 — Unified Dashboard</div>
+          <h2 class="h3 fw-bold mb-3" style="font-size: 1.85rem;">Every metric, one calm surface</h2>
+          <p class="text-muted mb-4" style="font-size: 0.9rem; font-weight: 500; line-height: 1.6;">
+            Pull data from any source into a single, composable view. Share live dashboards with stakeholders — no exports, no screenshots.
+          </p>
+          <div class="d-flex flex-column gap-2 feature-feature-list">
+            <div><i class="bi bi-check-lg text-success me-2"></i> Drag-and-drop widget builder</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> Real-time data sync across all sources</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> Role-based sharing with granular permissions</div>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-2">
+          <div class="premium-ui-card p-4 shadow-sm ms-auto" style="max-width: 490px;">
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <div class="metric-panel p-3">
+                  <span class="text-muted d-block mb-1" style="font-size: 0.65rem; font-weight: 600;">Monthly Revenue</span>
+                  <div class="h5 fw-bold m-0" style="font-size: 1.15rem;">$84.2k</div>
+                  <div class="indicator-line fill-wide mt-2"></div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="metric-panel p-3">
+                  <span class="text-muted d-block mb-1" style="font-size: 0.65rem; font-weight: 600;">Active Users</span>
+                  <div class="h5 fw-bold m-0" style="font-size: 1.15rem;">12,481</div>
+                  <div class="indicator-line fill-mid mt-2"></div>
+                </div>
+              </div>
+            </div>
+            <div style="font-size: 0.65rem; font-weight:700;" class="text-muted text-uppercase mb-2 tracking-wider">Recent Activity</div>
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Q3 Report synced</span><span class="status-pill done">Done</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Team review pending</span><span class="status-pill active">Active</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Analytics export</span><span class="status-pill queued">Queued</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-4 py-5 justify-content-between">
+        <div class="col-lg-5 order-lg-2">
+          <div class="section-label mb-2">02 — AUTOMATION FLOWS</div>
+          <h2 class="h3 fw-bold mb-3" style="font-size: 1.85rem;">Routines that run themselves</h2>
+          <p class="text-muted mb-4" style="font-size: 0.9rem; font-weight: 500; line-height: 1.6;">
+            Build automation flows with natural language. Clearwave understands your intent and suggests the next step — no flowchart diagrams needed.
+          </p>
+          <div class="d-flex flex-column gap-2 feature-feature-list">
+            <div><i class="bi bi-check-lg text-success me-2"></i> Natural language automation builder</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> 500+ pre-built trigger templates</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> Full audit trail for every action</div>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="premium-ui-card p-4 shadow-sm me-auto" style="max-width: 490px;">
+            <div class="d-flex flex-column gap-2 mb-4">
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Weekly digest → Slack</span><span class="status-pill done">Running</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Lead scored → Notify sales</span><span class="status-pill done">Running</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Invoice due → Alert CFO</span><span class="status-pill active">Active</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Report sync → Drive</span><span class="status-pill paused">Paused</span>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-8">
+                <div class="metric-panel p-3">
+                  <span class="text-muted d-block mb-1" style="font-size: 0.65rem; font-weight: 600;">Hours Saved This Month</span>
+                  <div class="h5 fw-bold m-0" style="font-size: 1.15rem;">148h</div>
+                  <div class="indicator-line fill-green mt-2"></div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="metric-panel p-3 text-center">
+                  <span class="text-muted d-block mb-1" style="font-size: 0.65rem; font-weight: 600;">Flows</span>
+                  <div class="h5 fw-bold m-0" style="font-size: 1.15rem;">24</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-4 py-4 justify-content-between">
+        <div class="col-lg-5 order-lg-1">
+          <div class="section-label mb-2">03 — TEAM COLLABORATION</div>
+          <h2 class="h3 fw-bold mb-3" style="font-size: 1.85rem;">Comments, context, and <em>clarity</em></h2>
+          <p class="text-muted mb-4" style="font-size: 0.9rem; font-weight: 500; line-height: 1.6;">
+            Annotate anything, assign tasks inline, and resolve conversations without switching tabs. The work and the discussion stay together.
+          </p>
+          <div class="d-flex flex-column gap-2 feature-feature-list">
+            <div><i class="bi bi-check-lg text-success me-2"></i> Inline comments on any data point</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> Threaded task assignments</div>
+            <div><i class="bi bi-check-lg text-success me-2"></i> Real-time presence and live cursors</div>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-2">
+          <div class="premium-ui-card p-4 shadow-sm ms-auto" style="max-width: 490px;">
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <div class="metric-panel p-3">
+                  <span class="text-muted d-block mb-2" style="font-size: 0.65rem; font-weight: 600;">Online Now</span>
+                  <div class="avatar-stack d-flex align-items-center">
+                    <span style="background-color: #0d8a72;">AS</span>
+                    <span style="background-color: #132f2b;">EC</span>
+                    <span style="background-color: #526b67;">MK</span>
+                    <span class="text-dark bg-light border fw-normal" style="font-size: 0.6rem;">+4</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="metric-panel p-3">
+                  <span class="text-muted d-block mb-1" style="font-size: 0.65rem; font-weight: 600;">Open Tasks</span>
+                  <div class="h5 fw-bold m-0" style="font-size: 1.15rem;">37</div>
+                </div>
+              </div>
+            </div>
+            <div style="font-size: 0.65rem; font-weight:700;" class="text-muted text-uppercase mb-2 tracking-wider">Recent Comments</div>
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Alex → Q3 chart updated</span><span class="status-pill resolved">Resolved</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Kim → Review needed</span><span class="status-pill open">Open</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-white small" style="font-size:0.8rem; font-weight: 600;">
+                <span>Maya → Approved & shipped</span><span class="status-pill done">Done</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="container border-top py-5" style="margin-top: 6rem; margin-bottom: 2rem;">
+    <div class="row row-cols-2 row-cols-md-4 g-4 pt-2">
+      <div class="col text-start">
+        <div class="stat-divider"></div>
+        <h3 class="display-6 fw-bold m-0" style="color: var(--brand-dark-teal); font-size: 1.85rem;">17k+</h3>
+        <h6 class="small fw-bold mt-2 mb-1" style="font-size: 0.8rem;">Teams Worldwide</h6>
+        <p class="text-muted small m-0" style="font-size: 0.72rem;">Across 80+ countries</p>
+      </div>
+      <div class="col text-start">
+        <div class="stat-divider"></div>
+        <h3 class="display-6 fw-bold m-0" style="color: var(--brand-dark-teal); font-size: 1.85rem;">11%</h3>
+        <h6 class="small fw-bold mt-2 mb-1" style="font-size: 0.8rem;">Avg. Productivity Gain</h6>
+        <p class="text-muted small m-0" style="font-size: 0.72rem;">Measured in first 30 days</p>
+      </div>
+      <div class="col text-start">
+        <div class="stat-divider"></div>
+        <h3 class="display-6 fw-bold m-0" style="color: var(--brand-dark-teal); font-size: 1.85rem;">34.3%</h3>
+        <h6 class="small fw-bold mt-2 mb-1" style="font-size: 0.8rem;">Uptime SLA</h6>
+        <p class="text-muted small m-0" style="font-size: 0.72rem;">Guaranteed and monitored</p>
+      </div>
+      <div class="col text-start">
+        <div class="stat-divider"></div>
+        <h3 class="display-6 fw-bold m-0" style="color: var(--brand-dark-teal); font-size: 1.85rem;">6h</h3>
+        <h6 class="small fw-bold mt-2 mb-1" style="font-size: 0.8rem;">Saved Per Team Weekly</h6>
+        <p class="text-muted small m-0" style="font-size: 0.72rem;">On average across all plans</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
